@@ -25,12 +25,16 @@
   background: white;
 }
 
+.test {
+  position: relative;
+}
 .navigation-websiteLogo {
   text-align: center;
   grid-row-gap: 20px;
   transform: translateY(25%);
-  height: 100%;
-  width: 100%;
+  height: 85%;
+  width: 80%;
+  margin: auto;
 }
 
 .navigation-signIn {
@@ -73,11 +77,14 @@
 }
 
 .navigation-searchBar {
-  transform: translateY(50%);
+  /* transform: translateY(50%); */
+  position: absolute;
+  height: 40px;
+  left: 0;
+  top: 50%;
+  width: 95%;
 
-  padding-top: 1.25%;
   padding-left: 1.25%;
-  padding-bottom: 1.25%;
 
   background-color: rgb(240, 240, 240);
   border-left: solid 1px rgb(170, 170, 170);
@@ -100,16 +107,51 @@
   border: solid 1px black;
 }
 
+.navigation-deleteQuery {
+  position: absolute;
+
+  height: 38px;
+  width: 38px;
+  right: 75px;
+  top: 55%;
+}
+
 .navigation-searchButton {
   height: 40px;
 
-  transform: translateY(50%);
-  margin-left: -5%;
+  /* transform: translateY(50%); */
+  right: 2.5%;
+  top: 50%;
 
+  position: absolute;
   background-color: rgb(240, 240, 240);
   border-right: solid 1px rgb(170, 170, 170);
   border-top: solid 1px rgb(170, 170, 170);
   border-bottom: solid 1px rgb(170, 170, 170);
+
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -moz-border-radius-topright: 20px;
+  -moz-border-radius-bottomright: 20px;
+
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -webkit-border-bottom-left-radius: 0px;
+}
+
+.navigation-searchActive {
+  height: 40px;
+
+  /* transform: translateY(50%); */
+  right: 2.5%;
+  top: 50%;
+
+  position: absolute;
+  background-color: black;
+  border-right: solid 1px black;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
 
   -moz-border-radius-topleft: 0px;
   -moz-border-radius-bottomleft: 0px;
@@ -138,7 +180,7 @@
   border: 2px solid lightgray;
   position: absolute;
   top: 105%;
-  width: 100%;
+  width: 95%;
   color: rgb(68, 68, 68);
   z-index: 9002;
 }

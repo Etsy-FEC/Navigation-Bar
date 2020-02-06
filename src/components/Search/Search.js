@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchModal from "./SearchModal";
 import axios from "axios";
+import DeleteQuery from "./DeleteQuery.js";
 
 const baseURL =
   "http://NavBuild-env.jc2sppyffu.us-east-1.elasticbeanstalk.com/";
@@ -16,6 +17,7 @@ class Search extends Component {
       popular: [],
       query: "",
       show: false,
+      searchActive: false,
       listingId: ""
     };
     this.myRef = React.createRef();
@@ -58,15 +60,15 @@ class Search extends Component {
     }
 
     if (id !== 0) {
-      this.setState({ show: false });
+      this.setState({ show: false, searchActive: false });
       this.onListingId(event, id);
     } else {
-      this.setState({ query: "", show: false });
+      this.setState({ query: "", show: false, seachActive: false });
     }
   }
 
   onHoverSubmit(event, id, title) {
-    this.setState({ query: title, show: false }, () => {
+    this.setState({ query: title, show: false, searchActive: false }, () => {
       this.onListingId(event, id);
     });
   }
@@ -98,20 +100,37 @@ class Search extends Component {
   }
 
   onSearchChange() {
-    Promise.resolve(
-      this.setState({ query: event.target.value.toLowerCase() })
-    ).then(x => {
-      if (this.state.query.length) {
-        let temp = [];
-        for (let i = 0; i < this.state.array.length; i++) {
-          let title = this.state.array[i].title;
-          if (title.toLowerCase().startsWith(this.state.query)) {
-            temp.push(this.state.array[i]);
+    if (this.state.query.length <= 75) {
+      Promise.resolve(this.setState({ query: event.target.value })).then(x => {
+        if (this.state.query.length) {
+          let temp = [];
+          for (let i = 0; i < this.state.array.length; i++) {
+            let title = this.state.array[i].title;
+            if (
+              title.toLowerCase().startsWith(this.state.query.toLowerCase())
+            ) {
+              temp.push(this.state.array[i]);
+            }
           }
+          this.setState({ current: temp });
         }
-        this.setState({ current: temp });
-      }
-    });
+      });
+    } else if (event.target.value.length < this.state.query.length) {
+      Promise.resolve(this.setState({ query: event.target.value })).then(x => {
+        if (this.state.query.length) {
+          let temp = [];
+          for (let i = 0; i < this.state.array.length; i++) {
+            let title = this.state.array[i].title;
+            if (
+              title.toLowerCase().startsWith(this.state.query.toLowerCase())
+            ) {
+              temp.push(this.state.array[i]);
+            }
+          }
+          this.setState({ current: temp });
+        }
+      });
+    }
   }
 
   toggleShow() {
@@ -121,6 +140,7 @@ class Search extends Component {
 
   handleClick(e) {
     e.preventDefault();
+    this.setState({ searchActive: true });
     if (this.state.show === false) {
       document.addEventListener("click", this.handleOutsideClick, false);
       this.setState({ show: true });
@@ -136,7 +156,11 @@ class Search extends Component {
     if (this.myRef.current.contains(e.target)) {
       return;
     }
-    this.setState({ show: false });
+    this.setState({ show: false, searchActive: false });
+  }
+
+  resetQuery() {
+    this.setState({ query: "" });
   }
 
   render() {
@@ -148,20 +172,34 @@ class Search extends Component {
             src={`${baseURL}sitelogo.png`}
           />
           <div className={"navigation-searchBoth"}>
-            <input
-              className={"navigation-searchBar"}
-              type="text"
-              value={this.state.query}
-              placeholder="Search for items or shops"
-              onChange={this.onSearchChange.bind(this)}
-              onClick={this.handleClick.bind(this)}
-            />
-            <input
-              type="image"
-              className={"navigation-searchButton"}
-              src={`${baseURL}mg.png`}
-              onClick={this.onSubmit.bind(this, event)}
-            ></input>
+            <div className="test">
+              <input
+                className={"navigation-searchBar"}
+                type="text"
+                value={this.state.query}
+                placeholder="Search for items or shops"
+                onChange={this.onSearchChange.bind(this)}
+                onClick={this.handleClick.bind(this)}
+              />
+              <DeleteQuery
+                query={this.state.query}
+                resetQuery={this.resetQuery.bind(this)}
+              />
+              <input
+                type="image"
+                className={
+                  this.state.searchActive
+                    ? "navigation-searchActive"
+                    : "navigation-searchButton"
+                }
+                src={
+                  this.state.searchActive
+                    ? `${baseURL}whitemg.png`
+                    : `${baseURL}mg.png`
+                }
+                onClick={this.onSubmit.bind(this, event)}
+              ></input>
+            </div>
             <SearchModal
               show={this.state.show}
               query={this.state.query}

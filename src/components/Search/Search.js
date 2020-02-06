@@ -162,6 +162,13 @@ class Search extends Component {
               src={`${baseURL}mg.png`}
               onClick={this.onSubmit.bind(this, event)}
             ></input>
+            <SearchModal
+              show={this.state.show}
+              query={this.state.query}
+              current={this.state.current}
+              popular={this.state.popular}
+              onHoverSubmit={this.onHoverSubmit.bind(this)}
+            />
           </div>
           <h4 className={"navigation-signIn"}>Sign in</h4>
           <input
@@ -170,13 +177,6 @@ class Search extends Component {
             className={"navigation-cart"}
           />
         </div>
-        <SearchModal
-          show={this.state.show}
-          query={this.state.query}
-          current={this.state.current}
-          popular={this.state.popular}
-          onHoverSubmit={this.onHoverSubmit.bind(this)}
-        />
       </header>
     );
   }

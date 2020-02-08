@@ -10,8 +10,13 @@ class Bar extends Component {
       currentTab: null,
       generate: BarData,
       insideHoverModal: false,
-      insideNavBar: false
+      insideNavBar: false,
+      selected: 0
     };
+  }
+
+  onRowHover(i) {
+    this.setState({ selected: i });
   }
 
   onSelect(i) {
@@ -19,7 +24,7 @@ class Bar extends Component {
   }
 
   onOutsideHoverModal() {
-    Promise.resolve(this.setState({ insideHoverModal: false })).then(val => {
+    this.setState({ insideHoverModal: false, selected: 0 }, () => {
       if (!this.state.insideNavBar) {
         this.setState({ currentTab: null });
       }
@@ -27,7 +32,7 @@ class Bar extends Component {
   }
 
   onOutsideNavBar(e) {
-    Promise.resolve(this.setState({ insideNavBar: false })).then(val => {
+    this.setState({ insideNavBar: false, selected: 0 }, () => {
       if (!this.state.insideHoverModal) {
         this.setState({ currentTab: null });
       }
@@ -61,13 +66,14 @@ class Bar extends Component {
             onOutsideNavBar={this.onOutsideNavBar.bind(this)}
             onInsideNavBar={this.onInsideNavBar.bind(this)}
           />
-          {
-            <HoverModal
-              data={this.state.currentTab}
-              onOutsideHoverModal={this.onOutsideHoverModal.bind(this)}
-              onInsideHoverModal={this.onInsideHoverModal.bind(this)}
-            />
-          }
+
+          <HoverModal
+            onRowHover={this.onRowHover.bind(this)}
+            data={this.state.currentTab}
+            onOutsideHoverModal={this.onOutsideHoverModal.bind(this)}
+            onInsideHoverModal={this.onInsideHoverModal.bind(this)}
+            selected={this.state.selected}
+          />
         </div>
       );
     }

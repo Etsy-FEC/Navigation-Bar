@@ -161,9 +161,9 @@ const BarData = [
         box3Footer: "Healing Potions"
       },
       {
-        title: "Quidditch Robes",
+        title: "Quidditch Robe",
         box2: [
-          { title: "Robes", main: true },
+          { title: "stuff", main: true },
           { title: "Gryffindor", main: false },
           { title: "Slytherin", main: false },
           { title: "Ravenclaw", main: false },
@@ -171,14 +171,14 @@ const BarData = [
           { title: "Professional", main: false }
         ],
         box3: [
-          { title: "Jerseys", main: true },
+          { title: "stuff2", main: true },
           { title: "Gryffindor", main: false },
           { title: "Slytherin", main: false },
           { title: "Ravenclaw", main: false },
           { title: "Hufflepuff", main: false },
           { title: "Professional", main: false }
         ],
-        box3Footer: "Retro Uniforms"
+        box3Footer: "Healing Potions"
       }
     ]
   },

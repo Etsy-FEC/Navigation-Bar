@@ -25,7 +25,9 @@ class Box4 extends React.Component {
             }}
           >
             <img
-              src={hover ? `invisible.jpg` : `${props.data}`}
+              src={
+                hover ? `${baseURL}invisible.jpg` : `${baseURL}${props.data}`
+              }
               className={"navigation-modalImage"}
             />
             <figcaption>
@@ -39,7 +41,10 @@ class Box4 extends React.Component {
       return (
         <div className={"navigation-box4"}>
           <figure className={"navigation-modalFigure"}>
-            <img src={`${props.data}`} className={"navigation-modalImage"} />
+            <img
+              src={`${baseURL}${props.data}`}
+              className={"navigation-modalImage"}
+            />
             <figcaption>
               Professor's Picks <br />
               <span className={"navigation-profPick"}>{props.caption}</span>

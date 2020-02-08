@@ -10,7 +10,7 @@
     "server-start": "nodemon server.js",
     "start": "node index.js"
   },
-  "author": "Sean Meyer",
+  "author": "Justin Gilley",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.1.2",

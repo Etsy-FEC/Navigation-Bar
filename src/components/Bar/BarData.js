@@ -54,7 +54,7 @@ const BarData = [
           { title: "Imperius Curse", main: true },
           { title: "Reductor Curse", main: true }
         ],
-        box3Footer: "Advanced Defense"
+        box3Footer: "Seriously Misunderstood Creatures"
       },
       {
         title: "Books on Potions",
@@ -163,7 +163,7 @@ const BarData = [
       {
         title: "Quidditch Robe",
         box2: [
-          { title: "stuff", main: true },
+          { title: "Full Uniforms", main: true },
           { title: "Gryffindor", main: false },
           { title: "Slytherin", main: false },
           { title: "Ravenclaw", main: false },
@@ -171,7 +171,7 @@ const BarData = [
           { title: "Professional", main: false }
         ],
         box3: [
-          { title: "stuff2", main: true },
+          { title: "Jerseys", main: true },
           { title: "Gryffindor", main: false },
           { title: "Slytherin", main: false },
           { title: "Ravenclaw", main: false },

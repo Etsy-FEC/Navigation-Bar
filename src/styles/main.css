@@ -52,6 +52,21 @@
   background-color: rgb(238, 238, 238, 1);
 }
 
+.navigation-fullCart {
+  position: relative;
+}
+
+.navigation-cartCounter {
+  padding-left: 4%;
+  padding-right: 4%;
+  background-color: rgb(241, 108, 43);
+  position: absolute;
+  left: 10%;
+  top: 40%;
+  border-radius: 50%;
+  border: 1px solid rgb(241, 108, 43);
+}
+
 .navigation-cart {
   height: 38px;
   border-radius: 20px;

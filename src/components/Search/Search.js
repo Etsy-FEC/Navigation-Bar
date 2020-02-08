@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchModal from "./SearchModal";
 import axios from "axios";
 import DeleteQuery from "./DeleteQuery.js";
+import CartCounter from "./CartCounter.js";
 
 const baseURL =
   "http://NavBuild-env.jc2sppyffu.us-east-1.elasticbeanstalk.com/";
@@ -209,11 +210,14 @@ class Search extends Component {
             />
           </div>
           <h4 className={"navigation-signIn"}>Sign in</h4>
-          <input
-            type="image"
-            src={`${baseURL}broom.png`}
-            className={"navigation-cart"}
-          />
+          <div className="navigation-fullCart">
+            <input
+              type="image"
+              src={`${baseURL}broom.png`}
+              className={"navigation-cart"}
+            />
+            <CartCounter />
+          </div>
         </div>
       </header>
     );
